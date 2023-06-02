@@ -1,19 +1,19 @@
 export default class Tutor {
   id: number;
   name: string;
-  phone: number;
+  phone: string;
   email: string;
   date_of_birth: string; // Ajustar posteriormente
-  zip_code: number;
+  zip_code: string;
 
   private static nextId = 1;
 
   constructor(
     name: string,
-    phone: number,
+    phone: string,
     email: string,
     date_of_birth: string,
-    zip_code: number
+    zip_code: string
   ) {
     this.id = Tutor.nextId++;
     this.name = name;
