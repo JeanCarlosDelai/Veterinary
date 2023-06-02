@@ -55,8 +55,21 @@ async function putTutor(
   });
 }
 
+async function deleteTutor(id: number): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    const index = tutors.findIndex((c) => c.id === id);
+    if (index >= 0) {
+      tutors.splice(index, 1);
+      return resolve(true);
+    }
+
+    return resolve(false);
+  });
+}
+
 export default {
   getTutors,
   postTutor,
   putTutor,
+  deleteTutor,
 };

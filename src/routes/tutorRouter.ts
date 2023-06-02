@@ -9,4 +9,6 @@ router.post("/tutor", tutorController.postTutor);
 
 router.put("/tutor/:id", tutorController.putTutor);
 
+router.delete("/tutor/:id", tutorController.deleteTutor);
+
 export default router;
