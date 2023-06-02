@@ -17,6 +17,24 @@ async function getTutors(): Promise<Tutor[]> {
     return resolve(tutors);
   });
 }
+
+async function postTutor(tutor: Tutor): Promise<Tutor> {
+  return new Promise((resolve, reject) => {
+    if (!tutor.name || !tutor.email) return reject(new Error(`Invalid Tutor.`));
+
+    const newTutor = new Tutor(
+      tutor.name,
+      tutor.phone,
+      tutor.email,
+      tutor.date_of_birth,
+      tutor.zip_code
+    );
+    tutors.push(newTutor);
+
+    return resolve(newTutor);
+  });
+}
 export default {
   getTutors,
+  postTutor,
 };
