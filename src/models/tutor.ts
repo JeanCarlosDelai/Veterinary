@@ -1,3 +1,4 @@
+import Pet from "./pet";
 export default class Tutor {
   id: number;
   name: string;
@@ -5,7 +6,7 @@ export default class Tutor {
   email: string;
   date_of_birth: string; // Ajustar posteriormente
   zip_code: string;
-
+  pets: Pet[];
   private static nextId = 1;
 
   constructor(
@@ -21,5 +22,6 @@ export default class Tutor {
     this.email = email;
     this.date_of_birth = date_of_birth;
     this.zip_code = zip_code;
+    this.pets = [];
   }
 }

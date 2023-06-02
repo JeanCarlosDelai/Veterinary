@@ -8,6 +8,16 @@ const tutors: Tutor[] = [
     email: "jean_vieceli@outllok.com",
     date_of_birth: "2000-01-12 10:10",
     zip_code: "98726000",
+    pets: [
+      {
+        id: 1,
+        name: "Anakim",
+        species: "Pintcher",
+        carry: "p",
+        weight: 4,
+        date_of_birth: "2021-11-25 10:10",
+      },
+    ],
   },
 ];
 
