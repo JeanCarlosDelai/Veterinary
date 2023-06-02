@@ -7,4 +7,6 @@ router.get("/tutors", tutorController.getTutors);
 
 router.post("/tutor", tutorController.postTutor);
 
+router.put("/tutor/:id", tutorController.putTutor);
+
 export default router;

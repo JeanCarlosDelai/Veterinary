@@ -34,7 +34,29 @@ async function postTutor(tutor: Tutor): Promise<Tutor> {
     return resolve(newTutor);
   });
 }
+
+async function putTutor(
+  id: number,
+  newTutor: Tutor
+): Promise<Tutor | undefined> {
+  return new Promise((resolve, reject) => {
+    const index = tutors.findIndex((c) => c.id === id);
+    if (index >= 0) {
+      if (newTutor.name && tutors[index].name !== newTutor.name)
+        tutors[index].name = newTutor.name;
+
+      if (newTutor.email && tutors[index].email !== newTutor.email)
+        tutors[index].email = newTutor.email;
+
+      return resolve(tutors[index]);
+    }
+
+    return resolve(undefined);
+  });
+}
+
 export default {
   getTutors,
   postTutor,
+  putTutor,
 };

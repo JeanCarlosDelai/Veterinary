@@ -14,7 +14,16 @@ async function postTutor(req: Request, res: Response, next: NextFunction) {
   else res.sendStatus(400);
 }
 
+async function putTutor(req: Request, res: Response, next: NextFunction) {
+  const id = req.params.id;
+  const tutors = req.body as Tutor;
+  const result = await tutorRepository.putTutor(parseInt(id), tutors);
+  if (result) res.json(result);
+  else res.sendStatus(404);
+}
+
 export default {
   getTutors,
   postTutor,
+  putTutor,
 };
