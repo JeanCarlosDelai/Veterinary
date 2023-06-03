@@ -19,6 +19,7 @@ async function postTutor(tutor: Tutor): Promise<Tutor> {
       tutor.date_of_birth,
       tutor.zip_code
     );
+
     tutors.push(newTutor);
 
     return resolve(newTutor);
@@ -48,6 +49,7 @@ async function putTutor(
 async function deleteTutor(id: number): Promise<boolean> {
   return new Promise((resolve, reject) => {
     const index = tutors.findIndex((c) => c.id === id);
+
     if (index >= 0) {
       tutors.splice(index, 1);
       return resolve(true);

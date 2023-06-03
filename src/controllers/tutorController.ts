@@ -26,8 +26,7 @@ async function deleteTutor(req: Request, res: Response, next: NextFunction) {
   const id = req.params.id;
   const success = await tutorRepository.deleteTutor(parseInt(id));
   if (success) {
-    console.log("1 Tutor foi apagadooo");
-    res.sendStatus(204);
+    res.sendStatus(200);
   } else res.sendStatus(404);
 }
 

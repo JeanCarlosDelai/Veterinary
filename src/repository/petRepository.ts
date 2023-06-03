@@ -33,6 +33,25 @@ async function postPet(tutorId: number, pet: Pet): Promise<Tutor | any> {
   });
 }
 
+async function deletePet(tutorId: number, petId: number): Promise<boolean> {
+  return new Promise((resolve, reject) => {
+    const indexTutor = tutors.findIndex((c) => c.id === tutorId);
+
+    if (indexTutor >= 0) {
+      const indexPet = tutors[indexTutor].pets.findIndex(
+        (pet) => pet.id === petId
+      );
+
+      if (indexPet >= 0) {
+        tutors[indexTutor].pets.splice(indexPet, 1);
+        return resolve(true);
+      }
+    }
+    return resolve(false);
+  });
+}
+
 export default {
   postPet,
+  deletePet,
 };
