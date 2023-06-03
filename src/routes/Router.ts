@@ -20,4 +20,6 @@ router.post("/pet/:tutorId", petController.postPet);
 
 router.delete("/pet/:petId/tutor/:tutorId", petController.deletePet);
 
+router.put("/pet/:petId/tutor/:tutorId", petController.putPet);
+
 export default router;

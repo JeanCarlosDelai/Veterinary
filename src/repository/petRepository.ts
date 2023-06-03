@@ -33,6 +33,59 @@ async function postPet(tutorId: number, pet: Pet): Promise<Tutor | any> {
   });
 }
 
+async function putPet(
+  newPet: Pet,
+  tutorId: number,
+  petId: number
+): Promise<Tutor | any | Pet> {
+  return new Promise((resolve, reject) => {
+    const indexTutor = tutors.findIndex((c) => c.id === tutorId);
+
+    if (indexTutor >= 0) {
+      const indexPet = tutors[indexTutor].pets.findIndex(
+        (pet) => pet.id === petId
+      );
+
+      if (indexPet >= 0) {
+        if (
+          newPet.name &&
+          tutors[indexTutor].pets[indexPet].name !== newPet.name
+        )
+          tutors[indexTutor].pets[indexPet].name = newPet.name;
+
+        if (
+          newPet.species &&
+          tutors[indexTutor].pets[indexPet].species !== newPet.species
+        )
+          tutors[indexTutor].pets[indexPet].species = newPet.species;
+
+        if (
+          newPet.carry &&
+          tutors[indexTutor].pets[indexPet].carry !== newPet.carry
+        )
+          tutors[indexTutor].pets[indexPet].carry = newPet.carry;
+
+        if (
+          newPet.weight &&
+          tutors[indexTutor].pets[indexPet].weight !== newPet.weight
+        )
+          tutors[indexTutor].pets[indexPet].weight = newPet.weight;
+
+        if (
+          newPet.date_of_birth &&
+          tutors[indexTutor].pets[indexPet].date_of_birth !==
+            newPet.date_of_birth
+        )
+          tutors[indexTutor].pets[indexPet].date_of_birth =
+            newPet.date_of_birth;
+
+        return resolve(tutors[indexTutor].pets[indexPet]);
+      }
+    }
+    return resolve(false);
+  });
+}
+
 async function deletePet(tutorId: number, petId: number): Promise<boolean> {
   return new Promise((resolve, reject) => {
     const indexTutor = tutors.findIndex((c) => c.id === tutorId);
@@ -53,5 +106,6 @@ async function deletePet(tutorId: number, petId: number): Promise<boolean> {
 
 export default {
   postPet,
+  putPet,
   deletePet,
 };

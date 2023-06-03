@@ -36,8 +36,20 @@ async function putTutor(
       if (newTutor.name && tutors[index].name !== newTutor.name)
         tutors[index].name = newTutor.name;
 
+      if (newTutor.phone && tutors[index].phone !== newTutor.phone)
+        tutors[index].phone = newTutor.phone;
+
       if (newTutor.email && tutors[index].email !== newTutor.email)
         tutors[index].email = newTutor.email;
+
+      if (
+        newTutor.date_of_birth &&
+        tutors[index].date_of_birth !== newTutor.date_of_birth
+      )
+        tutors[index].date_of_birth = newTutor.date_of_birth;
+
+      if (newTutor.zip_code && tutors[index].zip_code !== newTutor.zip_code)
+        tutors[index].zip_code = newTutor.zip_code;
 
       return resolve(tutors[index]);
     }

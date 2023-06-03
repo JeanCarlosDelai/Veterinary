@@ -10,6 +10,19 @@ async function postPet(req: Request, res: Response, next: NextFunction) {
   else res.json(result);
 }
 
+async function putPet(req: Request, res: Response, next: NextFunction) {
+  const tutorId = req.params.tutorId;
+  const petId = req.params.petId;
+  const pet = req.body as Pet;
+  const result = await petRepository.putPet(
+    pet,
+    parseInt(tutorId),
+    parseInt(petId)
+  );
+  if (result) res.status(200).send(result);
+  else res.status(400).send("status code 400");
+}
+
 async function deletePet(req: Request, res: Response, next: NextFunction) {
   const tutorId = req.params.tutorId;
   const petId = req.params.petId;
@@ -23,5 +36,6 @@ async function deletePet(req: Request, res: Response, next: NextFunction) {
 
 export default {
   postPet,
+  putPet,
   deletePet,
 };
