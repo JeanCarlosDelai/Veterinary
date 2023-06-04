@@ -1,33 +1,32 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import Tutor from "../models/tutor";
 import tutorRepository from "../repository/tutorsRepository";
 
-async function getTutors(req: Request, res: Response, next: NextFunction) {
+async function getTutors(req: Request, res: Response) {
   const tutors = await tutorRepository.getTutors();
-  res.json(tutors);
+  res.status(200).json(tutors);
 }
 
-async function postTutor(req: Request, res: Response, next: NextFunction) {
+async function postTutor(req: Request, res: Response) {
   const tutor = req.body as Tutor;
   const result = await tutorRepository.postTutor(tutor);
   if (result) res.status(201).json(result);
-  else res.sendStatus(400);
+  else res.status(400).send("Informações inválidas");
 }
 
-async function putTutor(req: Request, res: Response, next: NextFunction) {
+async function putTutor(req: Request, res: Response) {
   const id = req.params.id;
   const tutors = req.body as Tutor;
   const result = await tutorRepository.putTutor(parseInt(id), tutors);
-  if (result) res.json(result);
-  else res.sendStatus(404);
+  if (result) res.status(201).json(result);
+  else res.status(400).send("Informações inválidas");
 }
 
-async function deleteTutor(req: Request, res: Response, next: NextFunction) {
+async function deleteTutor(req: Request, res: Response) {
   const id = req.params.id;
-  const success = await tutorRepository.deleteTutor(parseInt(id));
-  if (success) {
-    res.sendStatus(200);
-  } else res.sendStatus(404);
+  const result = await tutorRepository.deleteTutor(parseInt(id));
+  if (result) res.status(200).send("status code 200");
+  else res.status(400).send("Tutor não encontrado");
 }
 
 export default {

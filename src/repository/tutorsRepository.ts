@@ -8,9 +8,16 @@ async function getTutors(): Promise<Tutor[]> {
   });
 }
 
-async function postTutor(tutor: Tutor): Promise<Tutor> {
+async function postTutor(tutor: Tutor): Promise<Tutor | undefined | string> {
   return new Promise((resolve, reject) => {
-    if (!tutor.name || !tutor.email) return reject(new Error(`Invalid Tutor.`));
+    if (
+      !tutor.name ||
+      !tutor.phone ||
+      !tutor.email ||
+      !tutor.date_of_birth ||
+      !tutor.zip_code
+    )
+      return resolve("Dados inválidos, por favor tente novamente");
 
     const newTutor = new Tutor(
       tutor.name,

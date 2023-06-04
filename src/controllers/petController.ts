@@ -1,16 +1,16 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import Pet from "../models/pet";
 import petRepository from "../repository/petRepository";
 
-async function postPet(req: Request, res: Response, next: NextFunction) {
+async function postPet(req: Request, res: Response) {
   const tutorId = req.params.tutorId;
   const pet = req.body as Pet;
   const result = await petRepository.postPet(parseInt(tutorId), pet);
   if (result) res.status(201).json(result);
-  else res.json(result);
+  else res.status(400).send("Informações inválidas");
 }
 
-async function putPet(req: Request, res: Response, next: NextFunction) {
+async function putPet(req: Request, res: Response) {
   const tutorId = req.params.tutorId;
   const petId = req.params.petId;
   const pet = req.body as Pet;
@@ -19,11 +19,11 @@ async function putPet(req: Request, res: Response, next: NextFunction) {
     parseInt(tutorId),
     parseInt(petId)
   );
-  if (result) res.status(200).send(result);
-  else res.status(400).send("status code 400");
+  if (result) res.status(201).json(result);
+  else res.status(400).send("Informações inválidas");
 }
 
-async function deletePet(req: Request, res: Response, next: NextFunction) {
+async function deletePet(req: Request, res: Response) {
   const tutorId = req.params.tutorId;
   const petId = req.params.petId;
   const result = await petRepository.deletePet(
@@ -31,7 +31,7 @@ async function deletePet(req: Request, res: Response, next: NextFunction) {
     parseInt(petId)
   );
   if (result) res.status(200).send("status code 200");
-  else res.status(400).send("status code 400");
+  else res.status(400).send("Informações inválidas");
 }
 
 export default {
