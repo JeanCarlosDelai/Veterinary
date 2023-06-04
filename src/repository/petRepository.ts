@@ -74,7 +74,7 @@ async function putPet(
         if (
           newPet.date_of_birth &&
           tutors[indexTutor].pets[indexPet].date_of_birth !==
-            newPet.date_of_birth
+          newPet.date_of_birth
         )
           tutors[indexTutor].pets[indexPet].date_of_birth =
             newPet.date_of_birth;
