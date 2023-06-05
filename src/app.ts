@@ -1,16 +1,17 @@
-import express, { NextFunction, Request, Response } from "express";
-import tutorRouter from "./routes/Router";
+import express from 'express'
+import Router from './routes/Router'
+import notFound from './middleware/not-found'
+import errorHandlerMiddleware from './middleware/error-handler'
 
-const app = express();
+const app = express()
 
 // JSON
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
-app.use("/", tutorRouter);
+app.use('/', Router)
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-  res.status(404).json({ error: "Rota não encontrada" });
-});
+app.use(notFound)
+app.use(errorHandlerMiddleware)
 
-export default app;
+export default app

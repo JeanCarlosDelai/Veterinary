@@ -1,5 +1,5 @@
-import Tutor from "../models/tutor";
+import Tutor from '../models/tutor'
 
-const tutors: Tutor[] = [];
+const tutors: Tutor[] = []
 
-export default tutors;
+export default tutors

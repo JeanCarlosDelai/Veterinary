@@ -1,37 +1,35 @@
-import { Request, Response } from "express";
-import Tutor from "../models/tutor";
-import tutorRepository from "../repository/tutorsRepository";
+import { Request, Response } from 'express'
+import Tutor from '../models/tutor'
+import tutorRepository from '../repository/tutorsRepository'
+import asyncWrapper from '../middleware/async'
 
-async function getTutors(req: Request, res: Response) {
-  const tutors = await tutorRepository.getTutors();
-  res.status(200).json(tutors);
-}
+const getTutors = asyncWrapper(async (req: Request, res: Response) => {
+  const tutors = await tutorRepository.getTutors()
+  res.status(200).json(tutors)
+})
 
-async function postTutor(req: Request, res: Response) {
-  const tutor = req.body as Tutor;
-  const result = await tutorRepository.postTutor(tutor);
-  if (result) res.status(201).json(result);
-  else res.status(400).send("Informações inválidas");
-}
+const postTutor = asyncWrapper(async (req: Request, res: Response) => {
+  const tutor = req.body as Tutor
+  const result = await tutorRepository.postTutor(tutor)
+  res.status(201).json(result)
+})
 
-async function putTutor(req: Request, res: Response) {
-  const id = req.params.id;
-  const tutors = req.body as Tutor;
-  const result = await tutorRepository.putTutor(parseInt(id), tutors);
-  if (result) res.status(201).json(result);
-  else res.status(400).send("Informações inválidas");
-}
+const putTutor = asyncWrapper(async (req: Request, res: Response) => {
+  const id = req.params.id
+  const tutors = req.body as Tutor
+  const result = await tutorRepository.putTutor(parseInt(id), tutors)
+  res.status(201).json(result)
+})
 
-async function deleteTutor(req: Request, res: Response) {
-  const id = req.params.id;
-  const result = await tutorRepository.deleteTutor(parseInt(id));
-  if (result) res.status(200).send("status code 200");
-  else res.status(400).send("Tutor não encontrado");
-}
+const deleteTutor = asyncWrapper(async (req: Request, res: Response) => {
+  const id = req.params.id
+  const result = await tutorRepository.deleteTutor(parseInt(id))
+  res.status(200).send(result)
+})
 
 export default {
   getTutors,
   postTutor,
   putTutor,
-  deleteTutor,
-};
+  deleteTutor
+}
