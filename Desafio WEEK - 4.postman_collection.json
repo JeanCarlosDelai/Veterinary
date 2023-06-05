@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "8f4a4e54-f0a0-4744-9600-8ffa83d9698e",
+		"name": "Desafio WEEK - 4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27755277"
+	},
+	"item": [
+		{
+			"name": "Retrieves all tutors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:3000/tutors",
+				"description": "Listar todos os tutores"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new tutor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Jean\",\r\n        \"phone\": \"99058249\",\r\n        \"email\": \"jean_vieceli@outllok.com\",\r\n        \"date_of_birth\": \"2000-01-12 10:10\",\r\n        \"zip_code\": \"98726000\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/tutor",
+				"description": "Adicionar um novo tutor"
+			},
+			"response": []
+		},
+		{
+			"name": "Updates a tutor",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Aletrado 2\",\r\n        \"phone\": \"990582492222assssss\",\r\n        \"email\": \"jean_vieceli@outllok.com22222ssss\",\r\n        \"date_of_birth\": \"2000-01-12 10:1022222ssss\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/tutor/1",
+				"description": "Alterar informações de tutores"
+			},
+			"response": []
+		},
+		{
+			"name": "Deletes a tutor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3000/tutor/1",
+				"description": "Apagar um tutor"
+			},
+			"response": []
+		},
+		{
+			"name": "Creates a pet and adds it to a tutor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"name\": \"Pipoca\",\r\n        \"species\": \"Pintcher\",\r\n        \"carry\": \"p\",\r\n        \"weight\": 4,\r\n        \"date_of_birth\": \"2021-11-25 10:10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/pet/1",
+				"description": "Criar um novo pet para um tutor"
+			},
+			"response": []
+		},
+		{
+			"name": "updates a pet's info",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"species\": \"Pintcherrrrr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:3000/pet/1/tutor/1",
+				"description": "Alterar informações de pets"
+			},
+			"response": []
+		},
+		{
+			"name": "deletes a pet from a tutor",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:3000/pet/1/tutor/1",
+				"description": "Apagar pets"
+			},
+			"response": []
+		}
+	]
+}
